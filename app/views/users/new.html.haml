@@ -1,0 +1,7 @@
+- content_for :page_header do
+  .ui.header Sign Up
+  %p In order to sign up for Git-PM, we need to connect your GitHub account so that we can analyze your repositories.  You can customize which repositories you want to manage on the next screen.
+  = link_to  "/auth/github", class: 'ui primary large button' do
+    %i.github.icon
+    Sign in with Github
+
