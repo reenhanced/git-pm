@@ -1,18 +1,11 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    if current_user.projects.any?
-      @projects = Project.all
-    else
-      if params[:organization]
-        @repos = github.repos.list org: params[:organization]
-      else
-        @repos = github.repos.list
-      end
-    end
+    @projects = current_user.projects.all
   end
 
   # GET /projects/1
@@ -33,7 +26,9 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
+    @project.owner_id = current_user.id
+    @project.users << current_user
+    
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

@@ -14,9 +14,13 @@
       .item
         = link_to 'Sign up', signup_path, class: 'ui primary button' if !current_user
 
-  .full-height
-    - if content_for?(:page_header)
-      .header.ui.segment
-        .container
-          .introduction= yield :page_header
-    = yield
+  .full-height.ui.grid
+    .three.wide.column
+      .ui.left.vertical.labeled.icon.menu= yield :sidebar
+
+    .thirteen.wide.column
+      - if content_for?(:page_header)
+        .header.ui.segment
+          .container
+            .introduction= yield :page_header
+      = yield
