@@ -1,9 +1,0 @@
-.ui.vertical.segment
-  %h3.ui.header
-    .ui.right.floated.header
-      = link_to projects_path(project: {name: repo.name, repo: repo.full_name}), method: :post, class: 'blue ui button floatRight add-project', data: {repo_name: "#{repo.full_name}", remote: true} do
-        %i.icon.plus
-        Add to projects
-    .content
-      = link_to repo.full_name, repo.html_url
-  %p= repo.description
