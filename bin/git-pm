@@ -11,20 +11,14 @@ end
 
 include GLI::App
 
-program_desc 'Describe your application here'
+program_desc 'Git-PM gives any GitHub repository a local Ajile project management system'
 
 version GitPm::VERSION
 
 subcommand_option_handling :normal
 arguments :strict
 
-desc 'Describe some switch here'
-switch [:s,:switch]
-
-desc 'Describe some flag here'
-default_value 'the default'
-arg_name 'The name of the argument'
-flag [:f,:flagname]
+commands_from 'git_pm/commands'
 
 pre do |global,command,options,args|
   # Pre logic here
